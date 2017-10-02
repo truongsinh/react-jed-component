@@ -1,0 +1,49 @@
+{
+  "name": "react-jed-component",
+  "version": "0.0.3",
+  "description": "Translatable React (Pure) component using Jed gettext",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "jest --config jest.json",
+    "test:e2e": "jest --config jest.e2e.json",
+    "lint": "tslint src/**/*.ts{,x}",
+    "clean": "rm -r dist",
+    "build": "tsc"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "gettext",
+    "jed",
+    "i18n",
+    "translatable",
+    "l10n",
+    "internationalization",
+    "localization"
+  ],
+  "repository": {
+    "git": "https://github.com/truongsinh/react-jed-component.git"
+  },
+  "author": "TruongSinh Tran-Nguyen <i@truongsinh.pro>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^16.0.7",
+    "typescript": "^2.5.3"
+  },
+  "peerDependencies": {
+    "react": "^15.6.2",
+    "tslib": "^1.7.1"
+  },
+  "dependencies": {
+    "jed": "^1.1.1"
+  }
+}
