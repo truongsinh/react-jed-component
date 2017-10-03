@@ -9,10 +9,11 @@ export interface IGettextProp {
 export abstract class JedPureComponent<P, S> extends React.PureComponent<IGettextProp, S> {
   public props: Readonly<{ children?: React.ReactNode }> & Readonly<IGettextProp> & Readonly<P>;
   private i18n = new Jed({});
+  // Any is neccessary here
   // tslint:disable-next-line no-any
   protected constructor(props?: IGettextProp & P, context?: any) {
     super(props, context);
-    // This promise is self-handed
+    // This promise is self-handled
     // tslint:disable-next-line no-floating-promises
     this.initLanguage();
   }
@@ -25,10 +26,10 @@ export abstract class JedPureComponent<P, S> extends React.PureComponent<IGettex
   }
 
   private async initLanguage() {
-    // tslint:disable-next-line strict-boolean-expressions
-    const languageLoadedCallback = this.props.languageLoadedCallback || ((err?: Error) => {
-      // tslint:disable-next-line strict-boolean-expressions
-      if (err && console) {
+    const propCallback = this.props.languageLoadedCallback;
+    const languageLoadedCallback = typeof propCallback === "function" ? propCallback : ((err?: Error) => {
+      if (err !== undefined && window.hasOwnProperty("console")) {
+        // We don't want silient failure
         // tslint:disable-next-line no-console
         console.warn(err);
       }

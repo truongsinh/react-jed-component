@@ -8,7 +8,9 @@
         "completed-docs": false,
         "no-unsafe-any": false,
         "no-magic-numbers": false,
+        "no-inferred-empty-object-type": false,
         "newline-before-return": false,
+        "no-void-expression": false,
         "typedef": false
     },
     "rulesDirectory": []

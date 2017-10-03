@@ -20,25 +20,23 @@ describe("error when loading langauge", () => {
       tree = renderer.create(
         <MyComponent
           languageCode="yy"
-          languageLoadedCallback={(e) => (e ? reject(e) : reject())}
+          languageLoadedCallback={(e) => (e === undefined ? resolve() : reject(e))}
         ></MyComponent>,
       ).toJSON();
     });
     await expect(languageLoadedPromise).rejects.toEqual(new Error("test error"));
   });
   it("invoke `console.warn`", async () => {
+    // tslint:disable-next-line no-unbound-method
     const originalWarn = console.warn;
     const warnPromise = new Promise((resolve) => {
       console.warn = resolve;
     });
-    let tree;
-    const languageLoadedPromise = new Promise((resolve, reject) => {
-      tree = renderer.create(
-        <MyComponent
-          languageCode="yy"
-        ></MyComponent>,
-      ).toJSON();
-    });
+    renderer.create(
+      <MyComponent
+        languageCode="yy"
+      ></MyComponent>,
+    ).toJSON();
     await expect(warnPromise).resolves.toEqual(new Error("test error"));
     console.warn = originalWarn;
   });
@@ -46,7 +44,6 @@ describe("error when loading langauge", () => {
 
 describe("getTranslation returns empty objects", () => {
   class MyComponent extends JedPureComponent<{}, {}> {
-    // tslint:disable-next-line prefer-function-over-method
     public render() {
       return this._("Hello world");
     }
@@ -69,7 +66,7 @@ describe("getTranslation returns empty objects", () => {
       tree = renderer.create(
         <MyComponent
           languageCode="yy"
-          languageLoadedCallback={(e) => (e ? reject(e) : resolve())}
+          languageLoadedCallback={(e) => e === undefined ? resolve() : reject(e)}
         ></MyComponent>,
       ).toJSON();
     });
@@ -80,7 +77,6 @@ describe("getTranslation returns empty objects", () => {
 
 describe("getTranslation returns jed objects", () => {
   class MyComponent extends JedPureComponent<{}, {}> {
-    // tslint:disable-next-line prefer-function-over-method
     public render() {
       const k = ["%s dog", "%s dogs"];
       const n1 = sprintf(this.ngettext(k[0], k[1], 1), 1);
@@ -107,13 +103,12 @@ describe("getTranslation returns jed objects", () => {
       component = renderer.create(
         <MyComponent
           languageCode="yy"
-          languageLoadedCallback={(e) => (e ? reject(e) : resolve())}
+          languageLoadedCallback={(e) => (e === undefined ? resolve() : reject(e))}
         ></MyComponent>,
       );
     });
     expect(component.toJSON()).toMatchSnapshot();
     await expect(languageLoadedPromise).resolves.toEqual();
-    // tree.update();
     expect(component.toJSON()).toMatchSnapshot();
   });
 });
