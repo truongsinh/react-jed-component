@@ -1,6 +1,6 @@
 {
   "name": "react-jed-component",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Translatable React (Pure) component using Jed gettext",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,7 +31,8 @@
     "localization"
   ],
   "repository": {
-    "git": "https://github.com/truongsinh/react-jed-component.git"
+    "type": "git",
+    "url": "https://github.com/truongsinh/react-jed-component.git"
   },
   "author": "TruongSinh Tran-Nguyen <i@truongsinh.pro>",
   "license": "ISC",
