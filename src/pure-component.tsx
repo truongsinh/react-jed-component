@@ -8,7 +8,7 @@ export interface IGettextProp {
 
 export abstract class JedPureComponent<P, S> extends React.PureComponent<IGettextProp, S> {
   public props: Readonly<{ children?: React.ReactNode }> & Readonly<IGettextProp> & Readonly<P>;
-  private i18n = new Jed({locale_data: { messages: { "": {} } } });
+  private i18n = new Jed({});
   // tslint:disable-next-line no-any
   protected constructor(props?: IGettextProp & P, context?: any) {
     super(props, context);

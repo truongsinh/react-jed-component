@@ -10,7 +10,10 @@
     "README.md"
   ],
   "scripts": {
-    "test": "jest --config jest.json",
+    "jest": "jest",
+    "ignore-pretest": "npm run lint",
+    "test": "npm run jest -- --coverage",
+    "posttest": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test:e2e": "jest --config jest.e2e.json",
     "lint": "tslint --project . src/**/*.ts{,x}",
     "clean": "rm -r dist",
@@ -38,6 +41,13 @@
   "license": "ISC",
   "devDependencies": {
     "@types/react": "^16.0.7",
+    "@types/react-test-renderer": "^15.5.4",
+    "coveralls": "^3.0.0",
+    "jest": "^21.2.1",
+    "react": "^16.0.0",
+    "react-test-renderer": "^16.0.0",
+    "ts-jest": "^21.0.1",
+    "tslib": "^1.7.1",
     "tslint": "^5.7.0",
     "typescript": "^2.5.3"
   },
