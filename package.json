@@ -1,6 +1,6 @@
 {
   "name": "react-jed-component",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Translatable React (Pure) component using Jed gettext",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,7 @@
   "scripts": {
     "test": "jest --config jest.json",
     "test:e2e": "jest --config jest.e2e.json",
-    "lint": "tslint src/**/*.ts{,x}",
+    "lint": "tslint --project . src/**/*.ts{,x}",
     "clean": "rm -r dist",
     "build": "tsc"
   },

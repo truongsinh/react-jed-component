@@ -5,6 +5,8 @@
     ],
     "jsRules": {},
     "rules": {
+        "completed-docs": false,
+        "no-unsafe-any": false,
         "typedef": false
     },
     "rulesDirectory": []

@@ -10,8 +10,10 @@ export abstract class JedPureComponent<P, S> extends React.PureComponent<IGettex
   public props: Readonly<{ children?: React.ReactNode }> & Readonly<IGettextProp> & Readonly<P>;
   private i18n = new Jed({locale_data: { messages: { "": {} } } });
   // tslint:disable-next-line no-any
-  private constructor(props?: IGettextProp & P, context?: any) {
+  protected constructor(props?: IGettextProp & P, context?: any) {
     super(props, context);
+    // This promise is self-handed
+    // tslint:disable-next-line no-floating-promises
     this.initLanguage();
   }
   protected _(msgid: string): string {
@@ -23,7 +25,9 @@ export abstract class JedPureComponent<P, S> extends React.PureComponent<IGettex
   }
 
   private async initLanguage() {
+    // tslint:disable-next-line strict-boolean-expressions
     const languageLoadedCallback = this.props.languageLoadedCallback || ((err?: Error) => {
+      // tslint:disable-next-line strict-boolean-expressions
       if (err && console) {
         // tslint:disable-next-line no-console
         console.warn(err);
