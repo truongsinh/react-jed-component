@@ -42,6 +42,7 @@
   "author": "TruongSinh Tran-Nguyen <i@truongsinh.pro>",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^21.1.2",
     "@types/react": "^16.0.7",
     "@types/react-test-renderer": "^15.5.4",
     "coveralls": "^3.0.0",

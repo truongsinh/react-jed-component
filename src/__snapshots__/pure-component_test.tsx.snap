@@ -1,9 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getTranslation returns empty objects renders after waiting for language resolve 1`] = `"Hello world"`;
+exports[`getTranslation returns empty objects renders after waiting for language resolve 1`] = `
+<span>
+  Hello world
+</span>
+`;
 
-exports[`getTranslation returns empty objects renders immediately 1`] = `"Hello world"`;
+exports[`getTranslation returns empty objects renders immediately 1`] = `
+<span>
+  Hello world
+</span>
+`;
 
-exports[`getTranslation returns jed objects renders default language, then translated language 1`] = `"1 dog, 2 dogs"`;
+exports[`getTranslation returns jed objects renders default language, then translated language 1`] = `
+<span>
+  1 dog
+  , 
+  2 dogs
+</span>
+`;
 
-exports[`getTranslation returns jed objects renders default language, then translated language 2`] = `"1 hunden, 2 hundra"`;
+exports[`getTranslation returns jed objects renders default language, then translated language 2`] = `
+<span>
+  1 hunden
+  , 
+  2 hundra
+</span>
+`;

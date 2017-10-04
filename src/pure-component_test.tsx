@@ -6,8 +6,8 @@ import { JedPureComponent, sprintf } from "./index";
 describe("error when loading langauge", () => {
   class MyComponent extends JedPureComponent<{}, {}> {
     // tslint:disable-next-line prefer-function-over-method
-    public render() {
-      return "";
+    public render(): false {
+      return false;
     }
     // tslint:disable-next-line prefer-function-over-method
     protected async getTranslation(): Promise<{}> {
@@ -45,7 +45,7 @@ describe("error when loading langauge", () => {
 describe("getTranslation returns empty objects", () => {
   class MyComponent extends JedPureComponent<{}, {}> {
     public render() {
-      return this._("Hello world");
+      return <span>{this._("Hello world")}</span>;
     }
     // tslint:disable-next-line prefer-function-over-method
     protected async getTranslation() {
@@ -70,7 +70,7 @@ describe("getTranslation returns empty objects", () => {
         ></MyComponent>,
       ).toJSON();
     });
-    await expect(languageLoadedPromise).resolves.toEqual();
+    await expect(languageLoadedPromise).resolves.toEqual(undefined);
     expect(tree).toMatchSnapshot();
   });
 });
@@ -81,7 +81,7 @@ describe("getTranslation returns jed objects", () => {
       const k = ["%s dog", "%s dogs"];
       const n1 = sprintf(this.ngettext(k[0], k[1], 1), 1);
       const n2 = sprintf(this.ngettext(k[0], k[1], 2), 2);
-      return `${n1}, ${n2}`;
+      return <span>{n1}, {n2}</span>;
     }
     // tslint:disable-next-line prefer-function-over-method
     protected async getTranslation() {
@@ -98,7 +98,7 @@ describe("getTranslation returns jed objects", () => {
     }
   }
   it("renders default language, then translated language", async () => {
-    let component;
+    let component: renderer.ReactTestInstance;
     const languageLoadedPromise = new Promise((resolve, reject) => {
       component = renderer.create(
         <MyComponent
@@ -107,8 +107,10 @@ describe("getTranslation returns jed objects", () => {
         ></MyComponent>,
       );
     });
+    // tslint:disable-next-line no-non-null-assertion no-unnecessary-type-assertion
+    component = component!;
     expect(component.toJSON()).toMatchSnapshot();
-    await expect(languageLoadedPromise).resolves.toEqual();
+    await expect(languageLoadedPromise).resolves.toEqual(undefined);
     expect(component.toJSON()).toMatchSnapshot();
   });
 });
