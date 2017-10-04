@@ -1,6 +1,6 @@
 {
   "name": "react-jed-component",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Translatable React (Pure) component using Jed gettext",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,7 @@
     "test": "npm run jest -- --coverage",
     "posttest": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test:e2e": "jest --config jest.e2e.json",
-    "lint": "tslint --project ./tsconfig.tslint.json src/**/*.ts{,x}",
+    "lint": "tslint --project . src/**/*.ts{,x}",
     "clean": "rm -rf dist",
     "prepublish": "npm run build",
     "prebuild": "npm run clean",

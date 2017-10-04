@@ -12,7 +12,7 @@ exports[`getTranslation returns empty objects renders immediately and after wait
 </span>
 `;
 
-exports[`getTranslation returns jed objects renders default language, then translated language 1`] = `
+exports[`getTranslation returns jed objects renders default language, then translated language, with callback 1`] = `
 <span>
   1 dog
   , 
@@ -20,7 +20,23 @@ exports[`getTranslation returns jed objects renders default language, then trans
 </span>
 `;
 
-exports[`getTranslation returns jed objects renders default language, then translated language 2`] = `
+exports[`getTranslation returns jed objects renders default language, then translated language, with callback 2`] = `
+<span>
+  1 hunden
+  , 
+  2 hundra
+</span>
+`;
+
+exports[`getTranslation returns jed objects renders default language, then translated language, without callback 1`] = `
+<span>
+  1 dog
+  , 
+  2 dogs
+</span>
+`;
+
+exports[`getTranslation returns jed objects renders default language, then translated language, without callback 2`] = `
 <span>
   1 hunden
   , 

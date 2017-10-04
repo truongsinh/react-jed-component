@@ -94,7 +94,7 @@ describe("getTranslation returns jed objects", () => {
       };
     }
   }
-  it("renders default language, then translated language", async () => {
+  it("renders default language, then translated language, with callback", async () => {
     let component: renderer.ReactTestInstance;
     const languageLoadedPromise = new Promise((resolve, reject) => {
       component = renderer.create(
@@ -111,6 +111,19 @@ describe("getTranslation returns jed objects", () => {
     expect(component.toJSON()).toMatchSnapshot();
     await expect(languageLoadedPromise).resolves.toEqual(true);
     expect(mockCallback.mock.calls.length).toBe(1);
+    expect(component.toJSON()).toMatchSnapshot();
+  });
+  it("renders default language, then translated language, without callback", async () => {
+    const component = renderer.create(
+      <MyComponent
+        languageCode="yy"
+      ></MyComponent>,
+    );
+    const componentUpdatePromise = new Promise((resolve) => {
+      (component.getInstance() as React.Component).componentDidUpdate = resolve;
+    });
+    expect(component.toJSON()).toMatchSnapshot();
+    await expect(componentUpdatePromise).resolves.toEqual({languageCode: "yy"});
     expect(component.toJSON()).toMatchSnapshot();
   });
 });
