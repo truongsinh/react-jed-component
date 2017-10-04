@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getTranslation returns empty objects renders after waiting for language resolve 1`] = `
+exports[`getTranslation returns empty objects renders immediately and after waiting for language resolve 1`] = `
 <span>
   Hello world
 </span>
 `;
 
-exports[`getTranslation returns empty objects renders immediately 1`] = `
+exports[`getTranslation returns empty objects renders immediately and after waiting for language resolve 2`] = `
 <span>
   Hello world
 </span>
@@ -25,5 +25,17 @@ exports[`getTranslation returns jed objects renders default language, then trans
   1 hunden
   , 
   2 hundra
+</span>
+`;
+
+exports[`getTranslation returns undefined renders immediately and does not render again 1`] = `
+<span>
+  Hello world
+</span>
+`;
+
+exports[`getTranslation returns undefined renders immediately and does not render again 2`] = `
+<span>
+  Hello world
 </span>
 `;

@@ -3,7 +3,8 @@ import * as React from "react";
 
 export interface IGettextProp {
   languageCode: string;
-  languageLoadedCallback?(err?: Error): void;
+  languageLoadedCallback?(err: Error): void;
+  languageLoadedCallback?(err: undefined, newLanguageRendered: boolean): void;
 }
 
 export abstract class JedPureComponent<P, S> extends React.PureComponent<IGettextProp, S> {
@@ -20,7 +21,7 @@ export abstract class JedPureComponent<P, S> extends React.PureComponent<IGettex
   protected _(msgid: string): string {
     return this.i18n.gettext.apply(this.i18n, arguments);
   }
-  protected abstract async getTranslation(): Promise<{}>;
+  protected abstract async getTranslation(): Promise<{} | void>;
   protected ngettext(msgid: string, msgidPlural: string, value: number): string {
     return this.i18n.ngettext.apply(this.i18n, arguments);
   }
@@ -36,9 +37,13 @@ export abstract class JedPureComponent<P, S> extends React.PureComponent<IGettex
     });
     try {
       const l = await this.getTranslation();
+      if (l === undefined) {
+        languageLoadedCallback(undefined, false);
+        return;
+      }
       this.i18n = new Jed(l);
       this.forceUpdate();
-      languageLoadedCallback();
+      languageLoadedCallback(undefined, true);
     } catch (e) {
       languageLoadedCallback(e);
     }
