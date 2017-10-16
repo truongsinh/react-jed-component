@@ -1,18 +1,18 @@
 import * as Jed from "jed";
 import * as React from "react";
 
-export interface IGettextProp {
-  languageCode: string;
+export interface IGettextProp<LangeEnum> {
+  languageCode: LangeEnum;
   languageLoadedCallback?(err: Error): void;
   languageLoadedCallback?(err: undefined, newLanguageRendered: boolean): void;
 }
 
-export abstract class JedPureComponent<P, S> extends React.PureComponent<IGettextProp, S> {
-  public props: Readonly<{ children?: React.ReactNode }> & Readonly<IGettextProp> & Readonly<P>;
+export abstract class JedPureComponent<P, S, LangeEnum> extends React.PureComponent<IGettextProp<LangeEnum>, S> {
+  public props: Readonly<{ children?: React.ReactNode }> & Readonly<IGettextProp<LangeEnum>> & Readonly<P>;
   private i18n = new Jed({});
   // Any is neccessary here
   // tslint:disable-next-line no-any
-  protected constructor(props?: IGettextProp & P, context?: any) {
+  protected constructor(props?: IGettextProp<LangeEnum> & P, context?: any) {
     super(props, context);
     // This promise is self-handled
     // tslint:disable-next-line no-floating-promises

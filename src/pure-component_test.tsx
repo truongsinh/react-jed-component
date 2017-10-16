@@ -3,8 +3,10 @@ import * as React from "react";
 import * as renderer from "react-test-renderer";
 import { JedPureComponent, sprintf } from "./index";
 
+type langeEnum = "yy";
+
 describe("error when loading langauge", () => {
-  class MyComponent extends JedPureComponent<{}, {}> {
+  class MyComponent extends JedPureComponent<{}, {}, langeEnum> {
     // tslint:disable-next-line prefer-function-over-method
     public render(): false {
       return false;
@@ -42,7 +44,7 @@ describe("error when loading langauge", () => {
 });
 
 describe("getTranslation returns empty objects", () => {
-  class MyComponent extends JedPureComponent<{}, {}> {
+  class MyComponent extends JedPureComponent<{}, {}, langeEnum> {
     public render() {
       return <span>{this._("Hello world")}</span>;
     }
@@ -73,7 +75,7 @@ describe("getTranslation returns empty objects", () => {
 });
 
 describe("getTranslation returns jed objects", () => {
-  class MyComponent extends JedPureComponent<{}, {}> {
+  class MyComponent extends JedPureComponent<{}, {}, langeEnum> {
     public render() {
       const k = ["%s dog", "%s dogs"];
       const n1 = sprintf(this.ngettext(k[0], k[1], 1), 1);
@@ -129,7 +131,7 @@ describe("getTranslation returns jed objects", () => {
 });
 
 describe("getTranslation returns undefined", () => {
-  class MyComponent extends JedPureComponent<{}, {}> {
+  class MyComponent extends JedPureComponent<{}, {}, langeEnum> {
     public render() {
       return <span>{this._("Hello world")}</span>;
     }
