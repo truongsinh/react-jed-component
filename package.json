@@ -42,17 +42,17 @@
   "author": "TruongSinh Tran-Nguyen <i@truongsinh.pro>",
   "license": "ISC",
   "devDependencies": {
-    "@types/jest": "^21.1.2",
+    "@types/jest": "^24.0.15",
     "@types/react": "^16.0.7",
-    "@types/react-test-renderer": "^15.5.4",
+    "@types/react-test-renderer": "^16.8.2",
     "coveralls": "^3.0.0",
-    "jest": "^21.2.1",
+    "jest": "^24.8.0",
     "react": "^16.0.0",
     "react-test-renderer": "^16.0.0",
-    "ts-jest": "^21.0.1",
+    "ts-jest": "^24.0.2",
     "tslib": "^1.7.1",
     "tslint": "^5.7.0",
-    "typescript": "^2.5.3"
+    "typescript": "^3.5.3"
   },
   "peerDependencies": {
     "react": "^15.6.2",
